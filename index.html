@@ -9,12 +9,34 @@
 
     <!-- Importing Custom Elements -->
     <link rel="import" href="src/aha-programable.html">
+    <style>
+        aha-programable {
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Using Custom Elements -->
-    <aha-programable value="return new Date();"> </aha-programable>
-    <aha-programable value="var today = new Date(); return today.toISOString();"> </aha-programable>
+    <p>
+        Example: reutrn new Date();<br/>
+        <aha-programable value="return new Date();"> Loading </aha-programable>
+    </p>
+    <p>
+       Example: var today = new Date(); return today.toISOString();<br/>
+       <aha-programable value="var today = new Date(); return today.toISOString();"> Loading </aha-programable>
+    </p>
+    <p>
+       <input id="code" placeholder="type codes with return, and enter" style="width: 200px;"/><br />
+       <aha-programable id="target" value=""> </aha-programable>
+    </p>
 
+    <script>
+        document.getElementById('code').onkeyup = function(event) {
+            if (event.keyCode == 13) {
+                document.getElementById('target').value=this.value;
+            }
+        };
+    </script>
 </body>
 </html>
