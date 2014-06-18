@@ -1,6 +1,6 @@
 {
     "name": "aha-programable",
-    "version": "0.0.0",
+    "version": "1.0.1",
     "description": "A custom element to calculate a piece of js code and use the result as the content.",
     "license": "MIT",
     "main": "dist/aha-programable.html",
