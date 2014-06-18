@@ -1,6 +1,7 @@
 # &lt;aha-programable&gt;
 
 > A custom element to calculate a piece of js code and use the result as the content.
+> This helps when you don't want to start a script block or a new javascript file.
 
 ## Demo
 

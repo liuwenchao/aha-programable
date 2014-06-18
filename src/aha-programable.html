@@ -9,20 +9,28 @@
     </template>
 
     <script>
-        funcion fill(code, span) {
+        function fill(code, span) {
             //TODO how to stop user write codes like: alert(); delete windows;
-            var result = new Function(code)();
+            try{
+                var result = new Function(code)();
+            } catch(e) {
+                console.error('failed to evaluate: ' + code);
+                return;
+            }
+            if (undefined === result) {
+                result = '';
+            }
             while( span.firstChild ) {
                 span.removeChild( span.firstChild );
             }
             span.appendChild( document.createTextNode(result) );
-        }
+        };
         Polymer('aha-programable', {
             ready: function() {
                 fill(this.value, this.$.main);
             },
-            valueChanged: function(attr, oldVal, newVal){
-                fill(newVal, this.$.main);
+            valueChanged: function(){
+                fill(this.value, this.$.main);
             }
         });
     </script>
