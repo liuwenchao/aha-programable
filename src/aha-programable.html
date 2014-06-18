@@ -1,0 +1,30 @@
+<!-- Import Polymer -->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- Define your custom element -->
+<polymer-element name="aha-programable" attributes="value">
+
+    <template>
+        <span id="main"></span>
+    </template>
+
+    <script>
+        funcion fill(code, span) {
+            //TODO how to stop user write codes like: alert(); delete windows;
+            var result = new Function(code)();
+            while( span.firstChild ) {
+                span.removeChild( span.firstChild );
+            }
+            span.appendChild( document.createTextNode(result) );
+        }
+        Polymer('aha-programable', {
+            ready: function() {
+                fill(this.value, this.$.main);
+            },
+            valueChanged: function(attr, oldVal, newVal){
+                fill(newVal, this.$.main);
+            }
+        });
+    </script>
+
+</polymer-element>
