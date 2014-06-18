@@ -2,18 +2,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>&lt;my-repo&gt;</title>
+    <title>&lt;aha-programable&gt;</title>
 
     <!-- Importing Web Component's Polyfill -->
     <script src="bower_components/platform/platform.js"></script>
 
     <!-- Importing Custom Elements -->
-    <link rel="import" href="src/my-element.html">
+    <link rel="import" href="src/aha-programable.html">
 </head>
 <body>
 
     <!-- Using Custom Elements -->
-    <my-element></my-element>
+    <aha-programable value="return new Date();"> </aha-programable>
+    <aha-programable value="var today = new Date(); return today.toISOString();"> </aha-programable>
 
 </body>
 </html>
