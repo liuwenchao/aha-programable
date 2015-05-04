@@ -1,6 +1,6 @@
 {
     "name": "aha-programable",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A custom element to calculate a piece of js code and use the result as the content.",
     "license": "MIT",
     "main": "dist/aha-programable.html",
@@ -16,6 +16,6 @@
         "bower_components"
     ],
     "dependencies": {
-        "polymer": "Polymer/polymer#~0.3.2"
+        "polymer": "Polymer/polymer#^0.8.0-rc.7"
     }
 }
