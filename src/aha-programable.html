@@ -2,37 +2,45 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <!-- Define your custom element -->
-<polymer-element name="aha-programable" attributes="value">
+<dom-module id="aha-programable">
 
     <template>
         <span id="main"></span>
     </template>
 
-    <script>
-        function fill(code, span) {
-            //TODO how to stop user write codes like: alert(); delete windows;
-            try{
-                var result = new Function(code)();
-            } catch(e) {
-                console.error('failed to evaluate: ' + code);
-                return;
+</dom-module>
+<script>
+    function fill(code, span) {
+        //TODO how to stop user write codes like: alert(); delete windows;
+        try{
+            var result = new Function(code)();
+        } catch(e) {
+            console.error('failed to evaluate: ' + code);
+            return;
+        }
+        if (undefined === result) {
+            result = '';
+        }
+        while( span.firstChild ) {
+            span.removeChild( span.firstChild );
+        }
+        span.appendChild( document.createTextNode(result) );
+    };
+    Polymer({
+        is: 'aha-programable',
+        properties: {
+            value: {
+                type: String,
+                notice: true,
+                observer: 'valueChanged'
             }
-            if (undefined === result) {
-                result = '';
-            }
-            while( span.firstChild ) {
-                span.removeChild( span.firstChild );
-            }
-            span.appendChild( document.createTextNode(result) );
-        };
-        Polymer('aha-programable', {
-            ready: function() {
-                fill(this.value, this.$.main);
-            },
-            valueChanged: function(){
-                fill(this.value, this.$.main);
-            }
-        });
-    </script>
+        },
+        ready: function() {
+            fill(this.value, Polymer.dom(this.$.main).node);
+        },
+        valueChanged: function(){
+            fill(this.value, Polymer.dom(this.$.main).node);
+        }
+    });
+</script>
 
-</polymer-element>
